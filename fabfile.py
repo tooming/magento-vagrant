@@ -83,8 +83,10 @@ def provision():
     with shell_env(DEBIAN_FRONTEND="noninteractive"):
         sudo("apt-get -y install phpmyadmin")
     sudo('ln -sfn /usr/share/phpmyadmin /var/www/html/phpmyadmin')
-    files.append('/etc/phpmyadmin/conf.d/send-error-reports.php',
-                 "<?php $cfg['SendErrorReports'] = 'never';", use_sudo=True)
+
+    if not files.exists('/etc/phpmyadmin/conf.d/send-error-reports.php'):
+        files.append('/etc/phpmyadmin/conf.d/send-error-reports.php',
+                     "<?php $cfg['SendErrorReports'] = 'never';", use_sudo=True)
 
     # install magento
     run('/var/www/html/magento/bin/magento setup:install '
