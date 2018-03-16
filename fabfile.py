@@ -19,9 +19,10 @@ def provision():
 
     sudo("apt-get update")
     applications = [
-        'htop', 'nginx', 'php-fpm', 'mysql-server', 'unzip',
+        'htop', 'nginx', 'php-fpm', 'mysql-server', 'redis-server', 'unzip',
         'php-dom', 'php-curl', 'php-gd', 'php-mcrypt', 'php-soap',  # for magento
-        'php-intl', 'php-mbstring', 'php-mysql', 'php-zip', 'php-bcmath'  # for magento
+        'php-intl', 'php-mbstring', 'php-mysql', 'php-zip', 'php-bcmath',  # for magento
+        'php-xml', 'php-json'  # for magento
     ]
     debconf_set_selection("mysql-server mysql-server/root_password password root")
     debconf_set_selection("mysql-server mysql-server/root_password_again password root")
